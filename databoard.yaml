@@ -1,3 +1,8 @@
+db:
+  driver: postgres
+  # Connection details could be specified either using
+  # db.connection parameter or DB_CONN environment variable.
+
 queries:
   suppliers:
     query: |
