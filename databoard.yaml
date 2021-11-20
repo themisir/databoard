@@ -1,0 +1,67 @@
+queries:
+  suppliers:
+    query: |
+      SELECT "id", "name"
+      FROM "Supplier"
+      {{if .Req.Vars.id}}WHERE "id" = $1{{end}}
+    parameters:
+      - name: id
+        type: int
+        optional: true
+
+mutations:
+  addSupplier:
+    query: |
+      INSERT INTO "Supplier" ("name")
+      VALUES ($1)
+    parameters:
+      - name: name
+        type: string
+  removeSupplier:
+    query: |
+      DELETE FROM "Supplier"
+      WHERE "id" = $1
+    parameters:
+      - name: id
+        type: int
+
+routes:
+  - path: /suppliers
+    methods:
+      GET:
+        type: query
+        query:
+          name: suppliers
+      POST:
+        type: mutation
+        mutation:
+          name: addSupplier
+        parameters:
+          name:
+            value: "{{.Req.Body.name}}"
+            validation:
+              string:
+                minLength: 1
+  - path: /suppliers/{id}
+    methods:
+      GET:
+        type: query
+        query:
+          name: suppliers
+          first: true
+        parameters:
+          id:
+            value: "{{.Req.Vars.id}}"
+            validation:
+              number:
+                min: 1
+      DELETE:
+        type: mutation
+        mutation:
+          name: removeSupplier
+        parameters:
+          id:
+            value: "{{.Req.Vars.id}}"
+            validation:
+              number:
+                min: 1

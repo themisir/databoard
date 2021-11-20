@@ -1,0 +1,11 @@
+# Env
+/.local.production.env
+/.local.env
+
+# Build
+/databoard
+/databoard.exe
+
+# OS
+.DS_Store
+Thumbs.db
