@@ -4,13 +4,13 @@ import "strconv"
 
 type Validation struct {
 	String *struct {
-		MinLength *int `yaml:"minLength"`
-		MaxLength *int `yaml:"maxLength"`
-	} `yaml:"string"`
+		MinLength *int `yaml:"minLength" json:"minLength"`
+		MaxLength *int `yaml:"maxLength" json:"maxLength"`
+	} `yaml:"string" json:"string"`
 	Number *struct {
-		Min *int `yaml:"min"`
-		Max *int `yaml:"max"`
-	}
+		Min *int `yaml:"min" json:"min"`
+		Max *int `yaml:"max" json:"max"`
+	} `yaml:"number" json:"number"`
 }
 
 func (v Validation) Validate(s string) bool {
