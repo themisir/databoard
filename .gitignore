@@ -3,6 +3,7 @@
 /.local.env
 
 # Build
+/output
 /databoard
 /databoard.exe
 
