@@ -41,7 +41,7 @@ func (c *Context) Req() *Request {
 func (c *Context) Pagination() *Pagination {
 	offset, err1 := strconv.Atoi(c.r.Query["_offset"])
 	limit, err2 := strconv.Atoi(c.r.Query["_limit"])
-	if err1 != nil || err2 != nil {
+	if err1 == nil && err2 == nil {
 		return &Pagination{Offset: offset, Limit: limit}
 	}
 	return nil
